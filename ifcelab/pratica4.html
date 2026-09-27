@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prática 4 - IFCE LAB</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#10b981">
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <link rel="stylesheet" href="css/praticas.css">
+</head>
+<body class="system-active">
+<div class="container">
+    <div class="card">
+        <button id="btnVoltarTopo" class="btn-voltar-topo" onclick="window.location.href='escolha-pratica.html'">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"></path>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Voltar
+        </button>
+        <div id="pratica4" class="tela ativa">
+            <h1>Prática 4: Análise Nodal</h1>
+            <div class="esconder-no-teste">
+                <input type="text" id="infoP4" class="input-destaque" placeholder="Bancada / Data da Prática (Ex: Turma 1 - 25/10)">
+                <h2 style="color:var(--primary-color);">1. Resistores do Circuito</h2><div id="p4_resistores"></div>
+                <h2 style="color:var(--primary-color); margin-top:30px;">2. Fontes</h2><div id="p4_fontes"></div>
+                <h2 style="color:var(--primary-color); margin-top:30px;">3. Tensões Nodais (Supernó)</h2><div id="p4_nos"></div>
+                <h2 style="color:var(--primary-color); margin-top:30px;">4. Tensões nos Resistores</h2><div id="p4_vr"></div>
+                <h2 style="color:var(--primary-color); margin-top:30px;">5. Correntes (mA)</h2><div id="p4_i"></div>
+            </div>
+            <div class="botoes-rodape">
+                <button id="btnPratica4" onclick="enviarPratica4()" class="btn-normal-submit">Submeter à Nuvem</button>
+            </div>
+            <hr>
+            <div class="info-box">
+                <strong>Instruções:</strong> Aplique a análise nodal ao circuito. Meça as tensões nos nós e verifique se as correntes satisfazem as equações nodais.
+            </div>
+            <button onclick="window.location.href='escolha-pratica.html'" class="btn-voltar" style="max-width: 300px; margin: 20px auto 0; display: block;">Retornar</button>
+            
+            <div class="logout-section" style="margin-top: 30px;">
+                <button onclick="sairConta()" class="btn-logout">Encerrar Sessão</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js?v=6"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof renderizarPratica4 === 'function') {
+            renderizarPratica4();
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+/* Estilos específicos para menu-professor.html */
+:root {
+    --bg-void: #141414;
+    --panel-black: #1f1f1f;
+    --green: #16a34a;
+    --green-dark: #15803d;
+    --text-main: #ffffff;
+    --text-muted: #9ca3af;
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    min-height: 100vh;
+    background: var(--bg-void);
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--text-main);
+}
+
+body {
+    overflow-y: auto;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 16px 48px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, transparent 100%);
+    transition: background 0.3s;
+}
+
+.header.scrolled {
+    background: var(--bg-void);
+}
+
+.logo {
+    color: var(--green);
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    user-select: none;
+}
+
+.logo span {
+    color: var(--text-main);
+}
+
+.nav {
+    display: flex;
+    gap: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav a:hover, .nav a.active {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.user-info {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Hero Banner */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 82vh;
+    min-height: 520px;
+}
+
+.hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 100%);
+}
+
+.hero-overlay-bottom {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--bg-void) 0%, transparent 100%);
+}
+
+.hero-content {
+    position: absolute;
+    bottom: 96px;
+    left: 48px;
+    max-width: 512px;
+}
+
+.hero-subtitle {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--green);
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
+
+.hero-description {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+
+.btn-secondary {
+    background: rgba(107, 114, 128, 0.7);
+    color: var(--text-main);
+    backdrop-filter: blur(4px);
+}
+
+.btn-secondary:hover {
+    background: rgba(107, 114, 128, 0.5);
+}
+
+/* Status Section */
+.status-section {
+    padding: 48px;
+    margin-top: -32px;
+    position: relative;
+    z-index: 10;
+}
+
+.status-card {
+    background: var(--panel-black);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.status-header {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.status-list {
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 14px;
+}
+
+/* Práticas Grid */
+.practices-section {
+    padding: 48px;
+    margin-top: -32px;
+    position: relative;
+    z-index: 10;
+}
+
+.practices-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text-main);
+}
+
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    margin: 32px 0;
+}
+
+.module-card {
+    background: var(--panel-black);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.module-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.module-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+}
+
+.module-title {
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+/* Logout Button */
+.logout-section {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 64px;
+}
+
+.btn-logout {
+    border: 1px solid rgba(107, 114, 128, 0.6);
+    color: var(--text-muted);
+    background: transparent;
+    padding: 10px 32px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-logout:hover {
+    border-color: var(--text-main);
+    color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 12px 24px;
+        gap: 16px;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .hero-content {
+        left: 24px;
+        right: 24px;
+        bottom: 48px;
+    }
+
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .status-section,
+    .practices-section {
+        padding: 24px;
+    }
+
+    .grid-cards {
+        grid-template-columns: 1fr;
+    }
+}

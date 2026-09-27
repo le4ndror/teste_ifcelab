@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prática 2 - IFCE LAB</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#10b981">
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <link rel="stylesheet" href="css/praticas.css">
+</head>
+<body class="system-active">
+<div class="container">
+    <div class="card">
+        <button id="btnVoltarTopo" class="btn-voltar-topo" onclick="window.location.href='escolha-pratica.html'">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"></path>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Voltar
+        </button>
+        <div id="pratica2" class="tela ativa">
+            <h1>Prática 2: Leis de Kirchhoff</h1>
+            <div class="esconder-no-teste">
+                <input type="text" id="infoP2" class="input-destaque" placeholder="Bancada / Data da Prática (Ex: Turma 1 - 25/10)">
+                <h2 style="color:var(--primary-color);">1. Circuito Série</h2><div id="p2_resistores"></div>
+                <h2 style="color:var(--primary-color); margin-top:30px;">2. Tensões Série</h2><div id="p2_serie"></div>
+                <h2 style="color:var(--primary-color); margin-top:30px;">3. Circuito Paralelo</h2><div id="p2_paralelo"></div>
+                <h2 style="color:var(--primary-color); margin-top:30px;">4. Tensões Paralelo</h2><div id="p2_paralelo_tensao"></div>
+                <h2 style="color:var(--primary-color); margin-top:30px;">5. Circuito Misto</h2><div id="p2_misto"></div>
+            </div>
+            <div class="botoes-rodape">
+                <button id="btnPratica2" onclick="enviarPratica2()" class="btn-normal-submit">Submeter à Nuvem</button>
+            </div>
+            <hr>
+            <div class="info-box">
+                <strong>Instruções:</strong> Meça as tensões e correntes nos nós indicados e verifique as Leis de Kirchhoff. Compare os valores medidos com os calculados.
+            </div>
+            <button onclick="window.location.href='escolha-pratica.html'" class="btn-voltar" style="max-width: 300px; margin: 20px auto 0; display: block;">Retornar</button>
+            
+            <div class="logout-section" style="margin-top: 30px;">
+                <button onclick="sairConta()" class="btn-logout">Encerrar Sessão</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js?v=6"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof renderizarPratica2 === 'function') {
+            renderizarPratica2();
+        }
+    });
+</script>
+</body>
+</html>

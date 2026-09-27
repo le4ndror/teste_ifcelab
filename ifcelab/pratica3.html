@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prática 3 - IFCE LAB</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#10b981">
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <link rel="stylesheet" href="css/praticas.css">
+</head>
+<body class="system-active">
+<div class="container">
+    <div class="card">
+        <button id="btnVoltarTopo" class="btn-voltar-topo" onclick="window.location.href='escolha-pratica.html'">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"></path>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Voltar
+        </button>
+        <div id="pratica3" class="tela ativa">
+            <h1>Prática 3: Divisor de Tensão e Corrente</h1>
+            <div class="esconder-no-teste">
+                <input type="text" id="infoP3" class="input-destaque" placeholder="Bancada / Data da Prática (Ex: Turma 1 - 25/10)">
+                <h2 style="color:var(--primary-color);">1. Divisor de Tensão</h2><div id="p3_resistores"></div>
+                <h2 style="color:var(--primary-color); margin-top:30px;">2. Tensões Divisor</h2><div id="p3_serie"></div>
+                <h2 style="color:var(--primary-color); margin-top:30px;">3. Divisor de Corrente</h2><div id="p3_paralelo"></div>
+            </div>
+            <div class="botoes-rodape">
+                <button id="btnPratica3" onclick="enviarPratica3()" class="btn-normal-submit">Submeter à Nuvem</button>
+            </div>
+            <hr>
+            <div class="info-box">
+                <strong>Instruções:</strong> Monte os circuitos de divisor de tensão e corrente. Meça as tensões e correntes em cada ponto e compare com os valores teóricos.
+            </div>
+            <button onclick="window.location.href='escolha-pratica.html'" class="btn-voltar" style="max-width: 300px; margin: 20px auto 0; display: block;">Retornar</button>
+            
+            <div class="logout-section" style="margin-top: 30px;">
+                <button onclick="sairConta()" class="btn-logout">Encerrar Sessão</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js?v=6"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof renderizarPratica3 === 'function') {
+            renderizarPratica3();
+        }
+    });
+</script>
+</body>
+</html>

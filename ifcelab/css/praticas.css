@@ -1,0 +1,398 @@
+/* Estilos específicos para práticas (pratica1-4.html) */
+body {
+    background: #141414;
+    color: #ffffff;
+}
+
+/* Componente de upload de foto por questão */
+.foto-questao-container {
+    margin: 20px 0;
+    padding: 15px;
+    background: #2a2a2a;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.foto-questao-container h4 {
+    margin: 0 0 10px 0;
+    color: #10b981;
+    font-size: 14px;
+}
+
+.foto-ajuda {
+    margin: 0 0 12px 0;
+    color: #9ca3af;
+    font-size: 12px;
+}
+
+.foto-ajuda a {
+    color: #60a5fa;
+}
+
+.groq-pratica-box input.input-destaque {
+    flex: 1;
+    min-width: 180px;
+    background: #141414;
+    color: #fff;
+    border: 1px solid #333;
+}
+
+.foto-upload-area {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.foto-input-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.foto-input-wrapper input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.btn-foto-upload {
+    background: #10b981;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.3s;
+}
+
+.btn-foto-upload:hover {
+    background: #059669;
+}
+
+.btn-foto-camera {
+    background: #2563eb;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-foto-camera:hover {
+    background: #1d4ed8;
+}
+
+.btn-analisar-foto {
+    background: #3b82f6;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.btn-analisar-foto:hover {
+    background: #2563eb;
+}
+
+.btn-analisar-foto:disabled {
+    background: #6b7280;
+    cursor: not-allowed;
+}
+
+.foto-preview {
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 2px solid #10b981;
+    display: none;
+}
+
+.foto-preview.has-image {
+    display: block;
+}
+
+.foto-feedback {
+    margin-top: 10px;
+    padding: 10px;
+    background: #1f1f1f;
+    border-radius: 6px;
+    font-size: 13px;
+    display: none;
+}
+
+.foto-feedback.show {
+    display: block;
+}
+
+.foto-feedback.analisando {
+    color: #fbbf24;
+}
+
+.foto-feedback.sucesso {
+    color: #d1fae5;
+    border: 1px solid #10b981;
+    white-space: pre-wrap;
+}
+
+.foto-feedback.erro {
+    color: #ef4444;
+    border: 1px solid #ef4444;
+}
+
+body.system-active .container {
+    display: flex !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background: #141414;
+    padding: 0;
+    overflow: hidden;
+}
+
+body.system-active .card {
+    max-height: 100vh;
+    border-radius: 0;
+    margin: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.tela { display: none; }
+.ativa { display: block; }
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background: #1f1f1f;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.btn-voltar-topo {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+}
+
+.btn-voltar-topo:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-voltar {
+    background: transparent;
+    border: 1px solid #4b5563;
+    color: #9ca3af;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-voltar:hover {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+h1 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+h2 {
+    color: #10b981;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.input-destaque {
+    border: 2px solid #10b981;
+    background: rgba(16, 185, 129, 0.1);
+    font-weight: 500;
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+    color: #000000;
+}
+
+.esconder-no-teste {
+    display: block;
+}
+
+.botoes-rodape {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn-normal-submit {
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-normal-submit:hover {
+    background: #059669;
+}
+
+.info-box {
+    background-color: #e0f2fe;
+    color: #0369a1;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    border: 1px solid #bae6fd;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #374151;
+    margin: 30px 0;
+}
+
+/* Classes do sistema de práticas */
+.registro {
+    background: #f9fafb;
+    padding: 20px;
+    margin: 16px 0;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 0.95rem;
+    text-align: left;
+    color: #000000;
+}
+
+.registro strong {
+    color: #000000;
+    font-weight: 600;
+}
+
+.registro input {
+    color: #000000;
+    background: #ffffff;
+}
+
+.registro select {
+    color: #000000;
+    background: #ffffff;
+}
+
+.flex-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.col-4 {
+    flex: 1;
+}
+
+.resistor-dinamico {
+    position: relative;
+    width: 250px;
+    max-width: 100%;
+    height: 50px;
+    margin: 15px auto;
+    background: #e1c699;
+    border-radius: 8px;
+    border: 1px solid #c8a873;
+}
+
+.resistor-dinamico::before, .resistor-dinamico::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 6px;
+    background: #9ca3af;
+    top: 22px;
+}
+
+.resistor-dinamico::before { left: -50px; }
+.resistor-dinamico::after { right: -50px; }
+
+.faixa-dinamica {
+    position: absolute;
+    width: 10%;
+    height: 100%;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Responsividade das práticas */
+@media (max-width: 768px) {
+    .botoes-rodape {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .btn-normal-submit {
+        width: 100%;
+    }
+    
+    .flex-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .col-4 {
+        width: 100%;
+    }
+    
+    .card {
+        padding: 20px 16px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.1rem;
+    }
+}

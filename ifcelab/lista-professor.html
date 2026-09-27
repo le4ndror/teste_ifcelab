@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros - IFCE LAB</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#10b981">
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="script.js?v=6"></script>
+    <link rel="stylesheet" href="css/lista-professor.css">
+</head>
+<body class="system-active">
+<div class="container">
+    <div class="card">
+        <button id="btnVoltarTopo" class="btn-voltar-topo" onclick="window.location.href='menu-professor.html'">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"></path>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Voltar
+        </button>
+        <div id="listaProfessor" class="tela ativa">
+            <h1 id="tituloListaProfessor">Registros</h1>
+            <div id="listaRegistros">
+                <p>Carregando registros...</p>
+            </div>
+            
+            <!-- Botão de teste para verificar html2pdf -->
+            <div style="margin: 20px 0; text-align: center;">
+                <button onclick="testarPDF()" class="btn-secundario" style="margin: 10px;">🧪 Testar html2pdf</button>
+            </div>
+            <button onclick="window.location.href='menu-professor.html'" class="btn-voltar" style="max-width: 300px; margin: 20px auto 0; display:block;">Retornar</button>
+            
+            <div class="logout-section" style="margin-top: 30px;">
+                <button onclick="sairConta()" class="btn-logout">Encerrar Sessão</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const tipoPratica = sessionStorage.getItem('tipoPratica') || 'Prática 1';
+document.getElementById("tituloListaProfessor").innerText = `Registros: ${tipoPratica}`;
+
+// Carregar registros ao iniciar a página
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Página carregada, iniciando carregamento de registros...');
+    
+    if (typeof window.mostrarRegistrosScreen === 'function') {
+        window.mostrarRegistrosScreen();
+    } else {
+        console.error('Função mostrarRegistrosScreen não encontrada');
+        document.getElementById("listaRegistros").innerHTML = "<p>Erro ao carregar sistema. Verifique se script.js foi carregado.</p>";
+    }
+});
+</script>
+</body>
+</html>

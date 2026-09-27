@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Laboratório - IFCE Maranguape</title>
+    
+    <!-- TAGS DO APLICATIVO (PWA) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#10b981">
+    
+    <!-- SCRIPTS -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- ================= NETFLIX LANDING PAGE ================= -->
+<div class="netflix-landing">
+    <!-- Header -->
+    <header class="netflix-header">
+        <a href="#" class="netflix-logo">
+            <img src="logo_lab.png" alt="IFCE LAB" class="netflix-logo-img">
+        </a>
+        <div class="netflix-header-right">
+            <img src="leiah_l.png" alt="LEIAH" class="leiah-logo-img">
+        </div>
+    </header>
+
+    <style>
+        .leiah-logo-img {
+            max-height: 270px;
+            width: auto;
+            margin-top: 30px;
+            margin-left: 200px;
+        }
+    </style>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background" style="background-image: url('sloga.png');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="netflix-curved-text">
+                <svg viewBox="0 0 900 100" preserveAspectRatio="xMidYMid meet">
+                    <!-- Curved path for text - Netflix style arc -->
+                    <defs>
+                        <path id="curvePath" d="M 30,45 Q 450,75 870,45" fill="none" />
+                    </defs>
+                    <!-- Text following the curve -->
+                    <text width="800" text-anchor="middle" dominant-baseline="middle">
+                        <textPath href="#curvePath" startOffset="50%">
+                            LABORATÓRIO DE ELETRÔNICA
+                        </textPath>
+                    </text>
+                </svg>
+            </div>
+            <h2 class="hero-subtitle">Práticas interativas, avaliações em tempo real e monitoramento inteligente</h2>
+            <p class="hero-description">Uma plataforma completa de ensino de eletrônica básica para o Instituto Federal do Ceará</p>
+            <div class="hero-form">
+                <button onclick="window.location.href='login-professor.html'" class="hero-cta">
+                    Portal do Professor
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+                <button onclick="window.location.href='login-aluno.html'" class="hero-cta hero-cta-secondary">
+                    Acesso de Alunos
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Section 1 - Circuitos -->
+    <section class="feature-section feature-dark">
+        <div class="feature-container">
+            <div class="feature-text">
+                <h2 class="feature-title">Práticas Interativas</h2>
+                <p class="feature-subtitle">Realize experimentos de eletrônica básica com feedback imediato e guias passo a passo.</p>
+            </div>
+            <div class="feature-visual feature-card-blue">
+                <svg viewBox="0 0 200 120" class="feature-svg" fill="none">
+                    <rect width="200" height="120" fill="#050d1a" />
+                    <defs>
+                        <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(59,130,246,0.06)" stroke-width="0.5" />
+                        </pattern>
+                        <filter id="glow-blue">
+                            <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+                            <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                        </filter>
+                    </defs>
+                    <rect width="200" height="120" fill="url(#grid)" />
+                    <g stroke="rgba(59,130,246,0.18)" stroke-width="1" fill="none">
+                        <path d="M10 30 H60 V50 H100" />
+                        <path d="M100 50 H140 V30 H190" />
+                        <path d="M10 90 H50 V70 H100" />
+                        <path d="M100 70 H150 V90 H190" />
+                        <path d="M60 50 V90" />
+                        <path d="M140 30 V70" />
+                        <path d="M100 20 V100" />
+                    </g>
+                    <g filter="url(#glow-blue)" stroke-width="1.5" fill="none" stroke="#3b82f6">
+                        <path class="circuit-line" d="M10 30 H60 V50 H100" stroke-dasharray="80" />
+                        <path class="circuit-line circuit-line-2" d="M100 50 H140 V30 H190" stroke-dasharray="100" />
+                        <path class="circuit-line circuit-line-3" d="M10 90 H50 V70 H100" stroke-dasharray="90" />
+                        <path class="circuit-line circuit-line-4" d="M100 70 H150 V90 H190" stroke-dasharray="95" />
+                    </g>
+                    <g fill="rgba(59,130,246,0.5)">
+                        <rect x="8" y="28" width="4" height="4" rx="0.5" />
+                        <rect x="8" y="48" width="4" height="4" rx="0.5" />
+                        <rect x="8" y="68" width="4" height="4" rx="0.5" />
+                        <rect x="8" y="88" width="4" height="4" rx="0.5" />
+                        <rect x="58" y="28" width="4" height="4" rx="0.5" />
+                        <rect x="58" y="48" width="4" height="4" rx="0.5" />
+                        <rect x="58" y="68" width="4" height="4" rx="0.5" />
+                        <rect x="58" y="88" width="4" height="4" rx="0.5" />
+                        <rect x="98" y="28" width="4" height="4" rx="0.5" />
+                        <rect x="98" y="48" width="4" height="4" rx="0.5" />
+                        <rect x="98" y="68" width="4" height="4" rx="0.5" />
+                        <rect x="98" y="88" width="4" height="4" rx="0.5" />
+                        <rect x="138" y="28" width="4" height="4" rx="0.5" />
+                        <rect x="138" y="48" width="4" height="4" rx="0.5" />
+                        <rect x="138" y="68" width="4" height="4" rx="0.5" />
+                        <rect x="138" y="88" width="4" height="4" rx="0.5" />
+                        <rect x="188" y="28" width="4" height="4" rx="0.5" />
+                        <rect x="188" y="48" width="4" height="4" rx="0.5" />
+                        <rect x="188" y="68" width="4" height="4" rx="0.5" />
+                        <rect x="188" y="88" width="4" height="4" rx="0.5" />
+                    </g>
+                    <g stroke="rgba(59,130,246,0.7)" stroke-width="1" fill="none">
+                        <rect x="72" y="46" width="16" height="8" rx="1" />
+                        <rect x="72" y="66" width="16" height="8" rx="1" />
+                    </g>
+                    <rect x="88" y="44" width="24" height="32" rx="2" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.5)" stroke-width="1" />
+                    <g fill="rgba(59,130,246,0.6)" font-size="5" font-family="monospace">
+                        <text x="96" y="58" fill="rgba(59,130,246,0.8)" font-size="4">IC</text>
+                        <text x="94" y="65" fill="rgba(59,130,246,0.6)" font-size="3">74LS</text>
+                    </g>
+                    <circle cx="60" cy="50" r="2.5" fill="#3b82f6" class="blink-1" filter="url(#glow-blue)" />
+                    <circle cx="100" cy="50" r="2.5" fill="#3b82f6" class="blink-2" filter="url(#glow-blue)" />
+                    <circle cx="140" cy="30" r="2.5" fill="#3b82f6" class="blink-3" filter="url(#glow-blue)" />
+                    <circle cx="100" cy="70" r="2.5" fill="#3b82f6" class="blink-4" filter="url(#glow-blue)" />
+                    <circle cx="50"  cy="70" r="2.5" fill="#3b82f6" class="blink-5" filter="url(#glow-blue)" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Section 2 - Dashboard -->
+    <section class="feature-section feature-dark">
+        <div class="feature-container">
+            <div class="feature-text">
+                <h2 class="feature-title">Monitoramento em Tempo Real</h2>
+                <p class="feature-subtitle">Acompanhe o progresso dos alunos e o status das bancadas de laboratório ao vivo.</p>
+            </div>
+            <div class="feature-visual feature-card-green">
+                <svg viewBox="0 0 200 120" class="feature-svg" fill="none">
+                    <rect width="200" height="120" fill="#030f07" />
+                    <defs>
+                        <filter id="glow-green">
+                            <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+                            <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                        </filter>
+                    </defs>
+                    <g stroke="rgba(34,197,94,0.07)" stroke-width="0.5">
+                        {[20,40,60,80,100].map(y => <line key={y} x1="10" y1={y} x2="190" y2={y} />)}
+                        {[30,60,90,120,150,180].map(x => <line key={x} x1={x} y1="10" x2={x} y2="110" />)}
+                    </g>
+                    <g class="wave-container" clipPath="url(#wave-clip)">
+                        <defs>
+                            <clipPath id="wave-clip"><rect x="10" y="10" width="180" height="100" /></clipPath>
+                        </defs>
+                        <path class="wave-path" d="M10 55 C25 45 35 65 50 55 C65 45 75 65 90 55 C105 45 115 65 130 55 C145 45 155 65 170 55 C185 45 195 65 210 55 C225 45 235 65 250 55 C265 45 275 65 290 55 C305 45 315 65 330 55 C345 45 355 65 370 55" stroke="rgba(34,197,94,0.8)" stroke-width="1.5" fill="none" filter="url(#glow-green)" style="animation-duration: 3s;" />
+                        <path class="wave-path" d="M10 75 C20 68 30 82 40 75 C50 68 60 82 70 75 C80 68 90 82 100 75 C110 68 120 82 130 75 C140 68 150 82 160 75 C170 68 180 82 190 75 C200 68 210 82 220 75 C230 68 240 82 250 75 C260 68 270 82 280 75 C290 68 300 82 310 75 C320 68 330 82 340 75 C350 68 360 82 370 75" stroke="rgba(34,197,94,0.4)" stroke-width="1" fill="none" filter="url(#glow-green)" style="animation-duration: 4.5s; animation-delay: 0.5s;" />
+                    </g>
+                    <g>
+                        {[{ x: 20, h: 30 }, { x: 35, h: 45 }, { x: 50, h: 25 }, { x: 65, h: 50 }, { x: 80, h: 38 }].map(({ x, h }, i) => (
+                            <g key={i}>
+                                <rect x={x} y={105 - h} width="10" height={h} rx="1" fill="rgba(34,197,94,0.25)" stroke="rgba(34,197,94,0.6)" stroke-width="0.5" />
+                            </g>
+                        ))}
+                    </g>
+                    <g fill="rgba(34,197,94,0.7)" fontSize="2" fontFamily="monospace">
+                        <text x="10" y="20">BANCADA STATUS</text>
+                        <text x="10" y="35" fill="rgba(34,197,94,0.5)" fontSize="0.8">▶ LIVE</text>
+                    </g>
+                    <circle cx="30" cy="40" r="3" fill="#22c55e" class="blink-1" filter="url(#glow-green)" />
+                    <circle cx="45" cy="40" r="3" fill="#22c55e" class="blink-2" filter="url(#glow-green)" />
+                    <circle cx="60" cy="40" r="3" fill="#22c55e" class="blink-3" filter="url(#glow-green)" />
+                    <circle cx="75" cy="40" r="3" fill="#22c55e" class="blink-4" filter="url(#glow-green)" />
+                    <circle cx="90" cy="40" r="3" fill="#22c55e" class="blink-5" filter="url(#glow-green)" />
+                    <text x="50" y="90" fill="rgba(34,197,94,0.7)" fontSize="1.5" fontFamily="monospace" text-anchor="middle">ALUNOS</text>
+                    <rect x="35" y="95" width="30" height="18" rx="3" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.3)" stroke-width="0.5" />
+                    <text x="50" y="110" fill="#22c55e" fontSize="3" fontFamily="monospace" fontWeight="bold" text-anchor="middle">24</text>
+                    <text x="150" y="90" fill="rgba(34,197,94,0.7)" fontSize="1.5" fontFamily="monospace" text-anchor="middle">BANCADAS</text>
+                    <rect x="135" y="95" width="30" height="18" rx="3" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.3)" stroke-width="0.5" />
+                    <text x="150" y="110" fill="#22c55e" fontSize="3" fontFamily="monospace" fontWeight="bold" text-anchor="middle">8</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Section 3 - Target -->
+    <section class="feature-section feature-dark">
+        <div class="feature-container">
+            <div class="feature-text">
+                <h2 class="feature-title">Avaliações Automatizadas</h2>
+                <p class="feature-subtitle">Sistema de correção automática com geração de relatórios detalhados para professores.</p>
+            </div>
+            <div class="feature-visual feature-card-orange">
+                <svg viewBox="0 0 200 120" class="feature-svg" fill="none">
+                    <rect width="300" height="120" fill="#0f0800" />
+                    <defs>
+                        <radialGradient id="target-bg" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="rgba(249,115,22,0.15)" />
+                            <stop offset="100%" stop-color="rgba(249,115,22,0)" />
+                        </radialGradient>
+                        <filter id="glow-orange">
+                            <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+                            <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                        </filter>
+                    </defs>
+                    <circle cx="100" cy="60" r="45" fill="url(#target-bg)" />
+                    <circle cx="100" cy="60" r="35" fill="none" stroke="rgba(249,115,22,0.3)" stroke-width="1" />
+                    <circle cx="100" cy="60" r="25" fill="none" stroke="rgba(249,115,22,0.5)" stroke-width="1" />
+                    <circle cx="100" cy="60" r="15" fill="none" stroke="rgba(249,115,22,0.7)" stroke-width="1.5" />
+                    <circle cx="100" cy="60" r="5" fill="#f97316" filter="url(#glow-orange)" class="blink-1" />
+                    <g stroke="rgba(249,115,22,0.4)" stroke-width="1">
+                        <line x1="100" y1="10" x2="100" y2="20" />
+                        <line x1="100" y1="100" x2="100" y2="110" />
+                        <line x1="50" y1="60" x2="60" y2="60" />
+                        <line x1="140" y1="60" x2="150" y2="60" />
+                    </g>
+                    <g fill="rgba(249,115,22,0.6)" fontSize="2" fontFamily="monospace">
+                        <text x="10" y="20">SCORE</text>
+                        <text x="10" y="40" fill="#f97316" fontSize="5" fontWeight="bold">95%</text>
+                    </g>
+                    <rect x="125" y="96" width="50" height="20" rx="2" fill="rgba(249,115,22,0.06)" stroke="rgba(249,115,22,0.2)" stroke-width="0.5" />
+                    <text x="49" y="112" fill="rgba(249,115,22,0.5)" fontSize="2" fontFamily="monospace" text-anchor="middle">RELATÓRIOS</text>
+                    <text x="150" y="112" fill="#f97316" fontSize="4" fontFamily="monospace" fontWeight="bold" text-anchor="middle">128</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2 class="faq-title">Perguntas Frequentes</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-question-text">O que é o IFCE LAB?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        O IFCE LAB é uma plataforma completa de laboratório de eletrônica básica do Instituto Federal do Ceará, permitindo que alunos realizem práticas interativas e professores monitorem o progresso em tempo real.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-question-text">Como faço para acessar?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Professores podem acessar através do portal institucional com suas credenciais. Alunos utilizam o código da bancada fornecido pelo professor para acessar as práticas.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-question-text">Posso acessar de qualquer dispositivo?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Sim! O IFCE LAB é uma PWA (Progressive Web App) que funciona em qualquer dispositivo - desktop, tablet ou smartphone - com interface otimizada para cada tela.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="netflix-footer">
+        <div class="footer-content">
+            <p>Instituto Federal do Ceará - Campus Maranguape</p>
+            <p>Laboratório de Eletrônica Básica</p>
+            <div style="margin-top: 20px;">
+                <a href="#" class="footer-link">Sobre</a>
+                <a href="#" class="footer-link">Ajuda</a>
+                <a href="#" class="footer-link">Contato</a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+function toggleFaq(element) {
+    const answer = element.nextElementSibling;
+    const icon = element.querySelector('.faq-icon');
+    const isOpen = answer.classList.contains('open');
+
+    // Close all FAQ answers
+    document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-icon').forEach(i => i.textContent = '+');
+
+    // If wasn't open, open this one
+    if (!isOpen) {
+        answer.classList.add('open');
+        icon.textContent = '−';
+    }
+}
+</script>
+
+</body>
+</html>

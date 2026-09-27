@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso do Professor - IFCE LAB</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#10b981">
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/login-professor.css">
+    <style>
+        /* Estilos específicos para o novo design do ZIP - versão professor com verde */
+        .login-container {
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #050f05;
+            background-image: url('baner_p.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .dark-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.72);
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .blob-top-left {
+            top: -6rem;
+            left: -6rem;
+            width: 18rem;
+            height: 18rem;
+            background-color: #14532d;
+            opacity: 0.85;
+        }
+
+        .blob-bottom-left {
+            bottom: -5rem;
+            left: -4rem;
+            width: 14rem;
+            height: 14rem;
+            background-color: #14532d;
+            opacity: 0.7;
+        }
+
+        .footer-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2.5rem;
+            background-color: #16a34a;
+        }
+
+        .main-layout {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 80rem;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 24rem;
+            border-radius: 1rem;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            background-color: #0a140a;
+            border: 1px solid #1a3a1a;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 0.5rem;
+            background-color: #16a34a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            color: #4ade80;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .login-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .login-subtitle {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+
+        .field {
+            margin-bottom: 1.25rem;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.75rem;
+            color: #9ca3af;
+            margin-bottom: 0.25rem;
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        .input-container input {
+            width: 100%;
+            border-radius: 0.5rem;
+            padding: 0.625rem 1rem;
+            font-size: 0.875rem;
+            color: white;
+            background-color: #0f1f0f;
+            border: 1px solid #1f3f1f;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-container input::placeholder {
+            color: #4b5563;
+        }
+
+        .input-container input:focus {
+            border-color: #16a34a;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #4b5563;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #4b5563;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .password-toggle:hover {
+            color: #9ca3af;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background-color: #16a34a;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: #15803d;
+        }
+
+        .btn-back {
+            margin-top: 1rem;
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            color: #9ca3af;
+            font-size: 0.875rem;
+            background-color: transparent;
+            border: 1px solid #374151;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-back:hover {
+            border-color: white;
+            color: white;
+        }
+
+        .right-section {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            flex-shrink: 0;
+            width: 18.75rem;
+            height: 18.75rem;
+        }
+
+        @media (min-width: 768px) {
+            .right-section {
+                display: flex;
+            }
+        }
+
+        .play-button-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .right-text {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2.5rem;
+        }
+
+        .right-text p:first-child {
+            color: #d9f99d;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .right-text p:last-child {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.25;
+        }
+
+        @media (max-width: 768px) {
+            .main-layout {
+                padding: 1rem;
+            }
+
+            .login-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .blob-top-left,
+            .blob-bottom-left {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="dark-overlay"></div>
+        
+        <div class="blob blob-top-left"></div>
+        <div class="blob blob-bottom-left"></div>
+        
+        <div class="footer-bar"></div>
+        
+        <div class="main-layout">
+            <div class="login-card">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                        </svg>
+                    </div>
+                    <span class="logo-text">IFCE LAB</span>
+                </div>
+                
+                <h1 class="login-title">
+                    Bem vindo ao <span style="color: #16a34a;">LOGIN</span>
+                </h1>
+                <p class="login-subtitle">
+                    Preencha os dados do login para acessar
+                </p>
+                
+                <form onsubmit="entrarProfessor(event)">
+                    <div class="field">
+                        <label for="senhaProfessor">Senha do Professor</label>
+                        <div class="input-container">
+                            <input type="password" id="senhaProfessor" placeholder="senhadeacesso" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword()">
+                                <svg id="eyeIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">Entrar</button>
+                    <button type="button" class="btn-back" onclick="window.location.href='index.html'">Voltar</button>
+                </form>
+            </div>
+            
+            <div class="right-section">
+                <svg viewBox="0 0 300 300" class="play-button-svg" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M 30 30 Q 30 10 55 20 L 270 135 Q 290 150 270 165 L 55 280 Q 30 290 30 270 Z"
+                        fill="#16a34a"
+                    />
+                </svg>
+                <div class="right-text">
+                    <p>Faça o Login em nossa</p>
+                    <p>Plataforma</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const input = document.getElementById('senhaProfessor');
+            const icon = document.getElementById('eyeIcon');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" /><line x1="1" y1="1" x2="23" y2="23" />';
+            } else {
+                input.type = 'password';
+                icon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" />';
+            }
+        }
+    </script>
+    
+    <script src="script.js?v=6"></script>
+</body>
+</html>

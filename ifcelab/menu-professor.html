@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Professor - IFCE LAB</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#10b981">
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/menu-professor.css">
+</head>
+<body>
+    <header class="header" id="mainHeader">
+        <div class="logo">IFCE<span>Lab</span></div>
+        <nav class="nav">
+            <a href="#" class="active">Início</a>
+            <a href="#">Práticas</a>
+            <a href="#">Avaliações</a>
+            <a href="#">Relatórios</a>
+        </nav>
+        <div class="user-info">
+            <span style="font-size: 14px; color: var(--text-muted);">Professor</span>
+            <div class="user-badge">P</div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <img src="baner_p.jpeg" alt="Laboratório de eletrônica">
+        <div class="hero-overlay"></div>
+        <div class="hero-overlay-bottom"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Sistema de Laboratório · IFCE</p>
+            <h1 class="hero-title">Painel de<br>Avaliação</h1>
+            <p class="hero-description">Gerencie práticas, acompanhe o progresso dos alunos e avalie trabalhos em tempo real.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-secondary">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                    Mais informações
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="status-section">
+        <div class="status-card">
+            <h2 class="status-header">📡 Status das Bancadas</h2>
+            <div id="listaStatusGrupos" class="status-list">
+                Aguardando dados...
+            </div>
+        </div>
+    </div>
+
+    <div class="practices-section">
+        <h2 class="practices-title">Práticas Disponíveis</h2>
+        <div class="grid-cards" id="gridProf"></div>
+    </div>
+
+    <div class="logout-section">
+        <button onclick="sairConta()" class="btn-logout">Encerrar Sessão</button>
+    </div>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 60) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+    <script src="script.js?v=6"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Preencher o grid de práticas do professor
+            const gridProf = document.getElementById("gridProf");
+            if (gridProf && typeof modulosPraticas !== 'undefined') {
+                let profHtml = "";
+                modulosPraticas.forEach(m => {
+                    profHtml += `<div class="module-card" onclick="mostrarRegistros('${m.id}')"><div class="module-img" style="background-image: url('${m.img}');"></div><div class="module-title">${m.titulo}</div></div>`;
+                });
+                gridProf.innerHTML = profHtml;
+            }
+        });
+    </script>
+</body>
+</html>
